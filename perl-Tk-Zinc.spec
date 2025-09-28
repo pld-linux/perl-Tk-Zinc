@@ -8,11 +8,12 @@ Summary:	Tk::Zinc - another Canvas which proposes many new functions, some based
 Summary(pl.UTF-8):	Tk::Zinc - kolejna klasa Canvas z wieloma nowymi funkcjami, niektórymi opartymi na OpenGL
 Name:		perl-Tk-Zinc
 Version:	3.306
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Development/Languages/Perl
 Source0:	https://www.cpan.org/modules/by-module/Tk/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	3c3e646795e7ab3d45bdeada4566aa09
+Patch0:		Tk-Zinc-types.patch
 URL:		https://metacpan.org/dist/Tk-Zinc
 BuildRequires:	OpenGL-devel
 BuildRequires:	OpenGL-GLU-devel
@@ -66,6 +67,7 @@ Programy demonstrujące funkcjonalność widżetów Tk::Zinc.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
+%patch -P0 -p1
 
 %build
 %{__perl} Makefile.PL \
