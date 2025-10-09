@@ -8,7 +8,7 @@ Summary:	Tk::Zinc - another Canvas which proposes many new functions, some based
 Summary(pl.UTF-8):	Tk::Zinc - kolejna klasa Canvas z wieloma nowymi funkcjami, niektórymi opartymi na OpenGL
 Name:		perl-Tk-Zinc
 Version:	3.306
-Release:	4
+Release:	5
 License:	LGPL v2.1+
 Group:		Development/Languages/Perl
 Source0:	https://www.cpan.org/modules/by-module/Tk/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -28,6 +28,8 @@ BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	perl-Test-Simple >= 0.98
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_noautoreq_perl	WidgetDemo
 
 %description
 Zinc widget is very similar to Tk Canvas in that it supports
