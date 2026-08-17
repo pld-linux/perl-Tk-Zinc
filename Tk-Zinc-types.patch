@@ -28,3 +28,43 @@
    gluTessNormal(ZnTesselator.tess, 0.0, 0.0, -1.0);
  
    /*
+--- Tk-Zinc-3.306/Field.c.orig	2020-11-25 20:23:17.000000000 +0100
++++ Tk-Zinc-3.306/Field.c	2026-08-18 00:07:33.959494963 +0200
+@@ -1617,7 +1617,7 @@
+  */
+ static void
+ FieldsEngine(ZnFieldSet field_set,
+-             void       (*cb)())
++             void       (*cb)(ZnWInfo*,Field,ZnBBox*,ZnBBox*,ZnPoint*,ZnBBox*,int,int, int))
+ {
+   ZnWInfo       *wi = field_set->item->wi;
+   /*int         i;      This one *NEED* to be an int */
+--- Tk-Zinc-3.306/OverlapMan.c.orig	2020-11-25 20:23:17.000000000 +0100
++++ Tk-Zinc-3.306/OverlapMan.c	2026-08-18 00:07:52.492728829 +0200
+@@ -98,8 +98,8 @@
+ 
+ typedef struct _ZINCS {
+   void  *rw;
+-  void  *(*_next_track)();
+-  void  (*_set_label_angle)();
++  void  *(*_next_track)(void *, void *, int *, int *, int *, int *, int *, int *, int *, int *, int *, int *);
++  void  (*_set_label_angle)(void *, void *, int, int);
+   INFOS *infos;
+   int   NBinfos;
+   int   NBalloc_infos;
+@@ -500,13 +500,13 @@
+     }
+     
+     info1.New_Track = TRUE;
+-    SetTrackInitValues(iw, pos);
++    SetTrackInitValues();
+ 
+     wr[iw].NBinfos++;
+   }
+   else {
+     if (info1.visibility == FALSE) {  
+-      SetTrackInitValues( iw, pos);
++      SetTrackInitValues();
+     }
+     else {
+       SetTrackCurrentValues(iw, pos);
